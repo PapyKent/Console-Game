@@ -1,0 +1,69 @@
+<story>
+   <chapter>
+      <chapterName>Chapitre 1 : Faux départ</chapterName>
+      <node>
+         <nodeName>Le probleme</nodeName>
+         <nodeText>Un rocher vous bloque le chemin.</nodeText>
+         <choice>
+            <choiceText>Pousser le rocher</choiceText>
+            <destination>2</destination>
+            <condition>
+               <stat>
+                  <statName>Force</statName>
+                  <value>5</value>
+               </stat>
+               <itemRequired>levier</itemRequired>
+            </condition>
+         </choice>
+
+         <choice>
+            <choiceText>Faire le tour du rocher</choiceText>
+            <destination>3</destination>
+            <condition>
+               <stat>
+                  <statName>Intelligence</statName>
+                  <value>2</value>
+               </stat>
+            </condition>
+            <itemReward>Fleur</itemReward>
+         </choice>
+
+         <choice>
+            <choiceText>Sauter par dessus</choiceText>
+            <destination>3</destination>
+            <condition>
+               <itemRequired>Pieds</itemRequired>
+            </condition>
+         </choice>
+      </node>
+
+
+      <node>
+         <nodeName>Le probleme2</nodeName>
+         <nodeText>Un rocher vous bloque le chemin.2</nodeText>
+         <choice>
+            <choiceText>Pousser le rocher2</choiceText>
+            <destination>22</destination>
+            <condition>
+               <itemRequired>levier</itemRequired>
+            </condition>
+         </choice>
+      </node>
+   </chapter>
+
+   <chapter>
+      <chapterName>Chapitre 2 : Faux départ</chapterName>
+      <node>
+         <nodeName>Apres le rocher</nodeName>
+         <nodeText>Un autre rocher vous bloque le chemin.</nodeText>
+         <choice>
+            <choiceText>Pousser le rocher</choiceText>
+            <destination>21</destination>
+            <condition>
+               <itemRequired>mains</itemRequired>
+            </condition>
+         </choice>
+      </node>
+   </chapter>
+</story>
+
