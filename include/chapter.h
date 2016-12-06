@@ -1,13 +1,13 @@
 #ifndef CONSOLEGAME_CHAPTER_H
 #define CONSOLEGAME_CHAPTER_H
 #include "node.h"
-#include <unordered_map>
+#include <map>
 
 
 class Chapter {
 private:
     string chapterName;
-    unordered_map<string, Node> nodeList;
+    map<string, Node> nodeList;
 
 public:
     Chapter();

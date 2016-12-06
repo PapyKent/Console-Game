@@ -8,7 +8,7 @@ using namespace std;
 class GameManager
 {
 private:
-    unordered_map<string,Chapter> story;
+    map<string, Chapter> story;
 public:
     GameManager();
 };

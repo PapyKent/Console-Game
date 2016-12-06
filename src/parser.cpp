@@ -1,93 +1,96 @@
 #include "../include/parser.h"
 
-void Parser::loadStory(map<string, Chapter> &story) {
-    tinyxml2::XMLDocument doc;
-    doc.LoadFile("../../xml/story.xml");
+void Parser::loadStory(map<string, Chapter> &story, const char *path) {
+    XMLDocument doc;
+    doc.LoadFile(path);
 
-    tinyxml2::XMLNode *docRoot = doc.FirstChild();
-    //return null if no root element
-
+    XMLNode *docRoot = NULL;
+    if (!Check::isFileNull(&doc, path)) {
+        docRoot = doc.FirstChild();
+    }
 
     if (docRoot == NULL) cout << "error loading file" << endl;//error loading file
     else {
-        tinyxml2::XMLElement *docChapter = docRoot->FirstChildElement("chapter");
+        XMLElement *docChapter;
+        if (!Check::isElementNull(docRoot, "chapter")) {
+            docChapter = docRoot->FirstChildElement("chapter");
+        }
 
         //parcours des chapitres
         while (docChapter != NULL) {
             Chapter chapter;
 
-            try
-            {
-                if(docChapter->FirstChildElement("chapterName") == NULL)
-                    throw new myError  ;
-                else
-                    chapter.setChapterName(docChapter->FirstChildElement("chapterName")->GetText());
-            }
-            catch(myError e)
-            {
-                cerr << e.XML_ELEMENT_MISSING() << endl;
+            if (!Check::isElementNull(docChapter, "chapterName")) {
+                chapter.setChapterName(docChapter->FirstChildElement("chapterName")->GetText());
             }
 
             // parcours des nodes
-            tinyxml2::XMLElement *docNode = docChapter->FirstChildElement("node");
+            XMLElement *docNode = NULL;
+            if (!Check::isElementNull(docChapter, "node")) {
+                docNode = docChapter->FirstChildElement("node");
+            }
             while (docNode != NULL) {
                 Node node;
 
-                try
-                {
-                    if(docNode->FirstChildElement("nodeName")->GetText() == NULL)
-                        throw new myError  ;
-                    else
-                        node.setNodeName(docNode->FirstChildElement("nodeName")->GetText());
-                }
-                catch(myError e)
-                {
-                    cerr << e.XML_ELEMENT_MISSING() << endl;
+
+                if (!Check::isElementNull(docNode, "nodeName")) {
+                    node.setNodeName(docNode->FirstChildElement("nodeName")->GetText());
                 }
 
-                try
-                {
-                    if(docNode->FirstChildElement("nodeText")->GetText() == NULL)
-                        throw new myError  ;
-                    else
-                        node.setNodeText(docNode->FirstChildElement("nodeText")->GetText());
-                }
-                catch(myError e)
-                {
-                    cerr << e.XML_ELEMENT_MISSING() << endl;
+                if (!Check::isElementNull(docNode, "nodeText")) {
+                    node.setNodeText(docNode->FirstChildElement("nodeText")->GetText());
                 }
 
-
-
-                node.setNodeText(docNode->FirstChildElement("nodeText")->GetText());
 
                 //parcours des choix
-                tinyxml2::XMLElement *docChoice = docNode->FirstChildElement("choice");
+
+                XMLElement *docChoice = NULL;
+
+                if (!Check::isElementNull(docNode, "choice")) {
+                    docChoice = docNode->FirstChildElement("choice");
+                }
+
                 while (docChoice != NULL) {
                     Choice choice;
-                    choice.setChoiceText(docChoice->FirstChildElement("choiceText")->GetText());
-                    choice.setChoiceDestination(docChoice->FirstChildElement("destination")->GetText());
+
+                    if (!Check::isElementNull(docChoice, "choiceText")) {
+                        choice.setChoiceText(docChoice->FirstChildElement("choiceText")->GetText());
+                    }
+                    if (!Check::isElementNull(docChoice, "destination")) {
+                        choice.setChoiceDestination(docChoice->FirstChildElement("destination")->GetText());
+                    }
 
                     //check si condition
-                    tinyxml2::XMLElement *docCondition = docChoice->FirstChildElement("condition");
+                    XMLElement *docCondition = docChoice->FirstChildElement("condition");
                     if (docCondition != NULL) {
                         //check si stat
-                        tinyxml2::XMLElement *docConditionItems = docCondition->FirstChildElement("stat");
+                        XMLElement *docConditionItems = docCondition->FirstChildElement("stat");
                         if (docConditionItems != NULL) {
                             Statistic stat;
-                            stat.setStatName(docConditionItems->FirstChildElement("statName")->GetText());
-                            int statVal=0;
-                            docConditionItems->FirstChildElement("value")->QueryIntText(&statVal);
-                            stat.setStatValue(statVal);
+                            if (!Check::isElementNull(docConditionItems, "statName")) {
+                                stat.setStatName(docConditionItems->FirstChildElement("statName")->GetText());
+                            }
+
+
+                            if (Check::isTypeCorrect(docConditionItems->FirstChildElement("value"))) {
+                                int statVal = stoi(docConditionItems->FirstChildElement("value")->GetText());
+                                //check if number
+                                stat.setStatValue(statVal);
+                            }
+
                             choice.setStatRequired(&stat);
                         }
                         //check si itemRequired
+                        docConditionItems;
                         docConditionItems = docCondition->FirstChildElement("itemRequired");
+
                         if (docConditionItems != NULL) {
                             choice.setItemRequired(docConditionItems->GetText());
                         }
                     }
-                    tinyxml2::XMLElement *docReward = docChoice->FirstChildElement("itemReward");
+                    XMLElement *docReward;
+                    docReward = docChoice->FirstChildElement("itemReward");
+
                     //check si itemReward
                     if (docReward != NULL) {
                         choice.setItemReward(docReward->GetText());

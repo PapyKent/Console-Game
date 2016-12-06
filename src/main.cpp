@@ -1,6 +1,8 @@
 #include <iostream>
-#include "../include/Parser.h"
+
+#include "../include/parser.h"
 #include "../include/chapter.h"
+
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -25,9 +27,9 @@ int main(int argc, char *argv[])
     test.addNode(node2);
     cout << test.findNode("La panade").getNodeText()   << endl;*/
 
-    unordered_map<string,Chapter> story;
+    map<string, Chapter> story;
 
-    Parser::loadStory(story);
+    Parser::loadStory(story, "../../xml/story.xml");
 
     cout << "Hello World!" << endl;
     return 0;

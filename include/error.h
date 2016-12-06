@@ -7,10 +7,20 @@
 using namespace std;
 
 class myError : public exception{
+private:
+    string missing;
 public :
-    virtual const string XML_FILE_LOADING();
-    virtual const string XML_ELEMENT_MISSING();
-    virtual const string XML_TYPE_ERROR();
+    myError();
+
+    myError(const char *);
+
+    const string XML_FILE_LOADING();
+
+    const string XML_ELEMENT_MISSING();
+
+    const string XML_TYPE_ERROR();
+
+    const string XML_RANGE_ERROR();
 };
 
 

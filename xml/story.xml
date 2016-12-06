@@ -10,7 +10,7 @@
             <condition>
                <stat>
                   <statName>Force</statName>
-                  <value>5</value>
+                  <value>9</value>
                </stat>
                <itemRequired>levier</itemRequired>
             </condition>
