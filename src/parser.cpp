@@ -1,6 +1,6 @@
 #include "../include/parser.h"
 
-void Parser::loadStory(unordered_map<string, Chapter> &story) {
+void Parser::loadStory(map<string, Chapter> &story) {
     tinyxml2::XMLDocument doc;
     doc.LoadFile("../../xml/story.xml");
 
@@ -19,20 +19,46 @@ void Parser::loadStory(unordered_map<string, Chapter> &story) {
             try
             {
                 if(docChapter->FirstChildElement("chapterName") == NULL)
-                    throw myError;
+                    throw new myError  ;
                 else
                     chapter.setChapterName(docChapter->FirstChildElement("chapterName")->GetText());
             }
             catch(myError e)
             {
-                cerr << e. << endl;
+                cerr << e.XML_ELEMENT_MISSING() << endl;
             }
 
             // parcours des nodes
             tinyxml2::XMLElement *docNode = docChapter->FirstChildElement("node");
             while (docNode != NULL) {
                 Node node;
-                node.setNodeName(docNode->FirstChildElement("nodeName")->GetText());
+
+                try
+                {
+                    if(docNode->FirstChildElement("nodeName")->GetText() == NULL)
+                        throw new myError  ;
+                    else
+                        node.setNodeName(docNode->FirstChildElement("nodeName")->GetText());
+                }
+                catch(myError e)
+                {
+                    cerr << e.XML_ELEMENT_MISSING() << endl;
+                }
+
+                try
+                {
+                    if(docNode->FirstChildElement("nodeText")->GetText() == NULL)
+                        throw new myError  ;
+                    else
+                        node.setNodeText(docNode->FirstChildElement("nodeText")->GetText());
+                }
+                catch(myError e)
+                {
+                    cerr << e.XML_ELEMENT_MISSING() << endl;
+                }
+
+
+
                 node.setNodeText(docNode->FirstChildElement("nodeText")->GetText());
 
                 //parcours des choix
