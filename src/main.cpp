@@ -28,8 +28,9 @@ int main(int argc, char *argv[])
     cout << test.findNode("La panade").getNodeText()   << endl;*/
 
     map<string, Chapter> story;
-
+    map<string, string> bag;
     Parser::loadStory(story, "../../xml/story.xml");
+    Parser::loadCharacter(bag, "../../xml/character.xml");
 
     cout << "Hello World!" << endl;
     return 0;

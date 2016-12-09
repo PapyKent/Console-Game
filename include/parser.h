@@ -21,7 +21,7 @@ class Parser
 private:
 
 public:
-    static void loadCharacter();
+    static void loadCharacter(map<string, string> &bag, const char *path);
 
     static void loadStory(map<string, Chapter> &story, const char *path);
 };

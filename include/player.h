@@ -2,7 +2,7 @@
 #define PLAYER_H
 
 #include <iostream>
-#include <unordered_map>
+#include <map>
 #include <string>
 #include "statistic.h"
 using namespace std;
@@ -10,8 +10,8 @@ using namespace std;
 class Player
 {
 private:
-    unordered_map<string,string> playerBag;
-    unordered_map<string,Statistic> playerStats;
+    map<string, string> playerBag;
+    map<string, Statistic> playerStats;
     string playerName;
 public:
     Player();
@@ -21,9 +21,13 @@ public:
     void setPlayerName(const string &choiceDestination);
 
     void addItemToBag(string);
+
+    void removeItemFromBag(string);
     bool isInBag(string);
 
     void addStat(Statistic*);
+
+    void removeStat(Statistic *);
     Statistic* findStat(string);
 };
 

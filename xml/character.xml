@@ -1,7 +1,5 @@
 <character>
-	<stat>
-		<name>Force</name>
-		<name>Intelligence</name>
-		<name>Agilite</name>
-	</stat>
+	<stat>Force</stat>
+	<stat>Intelligence</stat>
+	<stat>Agilite</stat>
 </character>

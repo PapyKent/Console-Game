@@ -111,5 +111,34 @@ void Parser::loadStory(map<string, Chapter> &story, const char *path) {
 
 }
 
+void Parser::loadCharacter(map<string, string> &bag, const char *path) {
+    XMLDocument doc;
+    doc.LoadFile(path);
+
+    XMLNode *docRoot = NULL;
+    if (!Check::isFileNull(&doc, path)) {
+        docRoot = doc.FirstChild();
+    }
+
+    if (docRoot == NULL) cout << "error loading file" << endl;//error loading file
+    else {
+        XMLElement *docStats;
+        if (!Check::isElementNull(docRoot, "stat")) {
+            docStats = docRoot->FirstChildElement("stat");
+        }
+
+        //parcours des chapitres
+        while (docStats != NULL) {
+            string stat;
+            stat = docStats->GetText();
+
+            pair<string, string> tmp(stat, stat);
+            bag.insert(tmp);
+            docStats = docStats->NextSiblingElement("stat");
+        }
+        //return XML_SUCCESS;
+    }
+}
+
 
 
