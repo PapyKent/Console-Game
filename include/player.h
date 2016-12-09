@@ -15,19 +15,25 @@ private:
     string playerName;
 public:
     Player();
-    Player(string);
 
-    const string &getPlayerName();
-    void setPlayerName(const string &choiceDestination);
+    Player(string playerName);
+
+    void setPlayerBag(const map<string, string> &playerBag);
+
+    void setPlayerStats(const map<string, Statistic> &playerStats);
+
+    string &getPlayerName();
+
+    void setPlayerName(const string &playerName);
 
     void addItemToBag(string);
 
-    void removeItemFromBag(string);
+    bool removeItemFromBag(string);
     bool isInBag(string);
 
-    void addStat(Statistic*);
+    void addStat(Statistic &);
 
-    void removeStat(Statistic *);
+    bool removeStat(string stat);
     Statistic* findStat(string);
 };
 

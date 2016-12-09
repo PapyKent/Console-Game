@@ -2,7 +2,7 @@
 
 #include "../include/parser.h"
 #include "../include/chapter.h"
-
+#include "../include/player.h"
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -27,10 +27,16 @@ int main(int argc, char *argv[])
     test.addNode(node2);
     cout << test.findNode("La panade").getNodeText()   << endl;*/
 
+    Player p("Jean");
+
     map<string, Chapter> story;
-    map<string, string> bag;
+    map<string, Statistic> stat;
     Parser::loadStory(story, "../../xml/story.xml");
-    Parser::loadCharacter(bag, "../../xml/character.xml");
+    Parser::loadCharacter(stat, "../../xml/character.xml");
+
+    p.setPlayerStats(stat);
+    p.addItemToBag("bibelot");
+    p.addItemToBag("torche");
 
     cout << "Hello World!" << endl;
     return 0;

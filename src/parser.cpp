@@ -111,7 +111,7 @@ void Parser::loadStory(map<string, Chapter> &story, const char *path) {
 
 }
 
-void Parser::loadCharacter(map<string, string> &bag, const char *path) {
+void Parser::loadCharacter(map<string, Statistic> &stats, const char *path) {
     XMLDocument doc;
     doc.LoadFile(path);
 
@@ -129,11 +129,11 @@ void Parser::loadCharacter(map<string, string> &bag, const char *path) {
 
         //parcours des chapitres
         while (docStats != NULL) {
-            string stat;
-            stat = docStats->GetText();
+            Statistic stat;
+            stat.setStatName(docStats->GetText());
 
-            pair<string, string> tmp(stat, stat);
-            bag.insert(tmp);
+            pair<string, Statistic> tmp(stat.getStatName(), stat);
+            stats.insert(tmp);
             docStats = docStats->NextSiblingElement("stat");
         }
         //return XML_SUCCESS;

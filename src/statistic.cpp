@@ -2,7 +2,7 @@
 
 
 Statistic::Statistic() {
-
+    this->statValue = 0;
 }
 
 Statistic::Statistic(string n, int v) {
