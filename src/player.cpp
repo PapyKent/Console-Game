@@ -31,8 +31,9 @@ bool Player::isInBag(string item) {
     return this->playerBag.find(item) != this->playerBag.end();
 }
 
-void Player::addStat(Statistic &stat) {
+void Player::addStat(Statistic stat) {
     pair<string, Statistic> tmp(stat.getStatName(), stat);
+
     this->playerStats.insert(tmp);
 }
 

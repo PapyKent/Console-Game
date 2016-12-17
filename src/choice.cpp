@@ -1,11 +1,11 @@
 #include "../include/choice.h"
 
 Choice::Choice(){
-        this->statRequired = NULL;
+
 }
 
 
-Choice::Choice(string choiceText,string choiceDestination,Statistic* statRequired ,string itemRequired,string itemReward){
+Choice::Choice(string choiceText,string choiceDestination,Statistic statRequired ,string itemRequired,string itemReward){
     this->choiceText = choiceText;
     this->choiceDestination = choiceDestination;
     this->statRequired = statRequired;
@@ -30,11 +30,11 @@ void Choice::setChoiceDestination(const string &choiceDestination){
     this->choiceDestination = choiceDestination;
 }
 
-Statistic* Choice::getStatRequired(){
+Statistic Choice::getStatRequired(){
     return this->statRequired;
 }
 
-void Choice::setStatRequired(Statistic* statRequired){
+void Choice::setStatRequired(Statistic& statRequired){
     this->statRequired = statRequired;
 }
 

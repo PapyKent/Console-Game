@@ -3,7 +3,7 @@
 #include "node.h"
 #include <map>
 
-
+using namespace std;
 class Chapter {
 private:
     string chapterName;
@@ -17,7 +17,11 @@ public:
     void setChapterName(const string &chapterName);
 
     void addNode(Node);
-    Node findNode(string);
+    Node* findNode(string);
+
+    void printNode(string nodeName);
+
+
 
 
 };

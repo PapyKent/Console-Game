@@ -28,16 +28,19 @@ int main(int argc, char *argv[])
     cout << test.findNode("La panade").getNodeText()   << endl;*/
 
     Player p("Jean");
+    GameManager gm;
+    Parser::loadStory(gm, "../../xml/story.xml");
+    Parser::loadCharacter(gm, "../../xml/character.xml");
 
-    map<string, Chapter> story;
+    /*map<string, Chapter> story;
     map<string, Statistic> stat;
-    Parser::loadStory(story, "../../xml/story.xml");
-    Parser::loadCharacter(stat, "../../xml/character.xml");
 
     p.setPlayerStats(stat);
     p.addItemToBag("bibelot");
-    p.addItemToBag("torche");
+    p.addItemToBag("torche");*/
 
+    //story.printNode("Le probleme");
+    gm.findChapter("Chapitre 1 : Faux départ")->printNode("Le probleme");
     cout << "Hello World!" << endl;
     return 0;
 }

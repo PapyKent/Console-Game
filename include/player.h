@@ -31,7 +31,7 @@ public:
     bool removeItemFromBag(string);
     bool isInBag(string);
 
-    void addStat(Statistic &);
+    void addStat(Statistic );
 
     bool removeStat(string stat);
     Statistic* findStat(string);

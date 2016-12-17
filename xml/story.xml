@@ -32,6 +32,10 @@
             <choiceText>Sauter par dessus</choiceText>
             <destination>3</destination>
             <condition>
+               <stat>
+                  <statName>noStat</statName>
+                  <value>0</value>
+               </stat>
                <itemRequired>Pieds</itemRequired>
             </condition>
          </choice>
@@ -45,6 +49,10 @@
             <choiceText>Pousser le rocher2</choiceText>
             <destination>22</destination>
             <condition>
+               <stat>
+                  <statName>noStat</statName>
+                  <value>0</value>
+               </stat>
                <itemRequired>levier</itemRequired>
             </condition>
          </choice>
@@ -60,6 +68,10 @@
             <choiceText>Pousser le rocher</choiceText>
             <destination>21</destination>
             <condition>
+               <stat>
+                  <statName>noStat</statName>
+                  <value>0</value>
+               </stat>
                <itemRequired>mains</itemRequired>
             </condition>
          </choice>

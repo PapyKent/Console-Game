@@ -13,6 +13,7 @@
 #include "node.h"
 #include "chapter.h"
 #include "check.h"
+#include "gamemanager.h"
 
 using namespace tinyxml2;
 
@@ -21,9 +22,9 @@ class Parser
 private:
 
 public:
-    static void loadCharacter(map<string, Statistic> &bag, const char *path);
+    static void loadCharacter(GameManager& gm, const char *path);
 
-    static void loadStory(map<string, Chapter> &story, const char *path);
+    static void loadStory(GameManager& gm, const char *path);
 };
 
 #endif // PARSER_H

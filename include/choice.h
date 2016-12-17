@@ -6,12 +6,12 @@ class Choice {
 private:
     string choiceText;
     string choiceDestination;
-    Statistic* statRequired;
+    Statistic statRequired;
     string itemRequired;
     string itemReward;
 public:
     Choice();
-    Choice(string,string,Statistic*,string,string);
+    Choice(string,string,Statistic,string,string);
 
     const string &getChoiceText();
     void setChoiceText(const string &choiceText);
@@ -19,8 +19,8 @@ public:
     const string &getChoiceDestination();
     void setChoiceDestination(const string &choiceDestination);
 
-    Statistic* getStatRequired();
-    void setStatRequired(Statistic* statRequired);
+    Statistic getStatRequired();
+    void setStatRequired(Statistic& statRequired);
 
     const string &getItemRequired();
     void setItemRequired(const string &itemRequired);

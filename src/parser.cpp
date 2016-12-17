@@ -1,6 +1,7 @@
 #include "../include/parser.h"
 
-void Parser::loadStory(map<string, Chapter> &story, const char *path) {
+
+void Parser::loadStory(GameManager& gm, const char *path) {
     XMLDocument doc;
     doc.LoadFile(path);
 
@@ -78,7 +79,7 @@ void Parser::loadStory(map<string, Chapter> &story, const char *path) {
                                 stat.setStatValue(statVal);
                             }
 
-                            choice.setStatRequired(&stat);
+                            choice.setStatRequired(stat);
                         }
                         //check si itemRequired
                         docConditionItems;
@@ -102,18 +103,18 @@ void Parser::loadStory(map<string, Chapter> &story, const char *path) {
                 chapter.addNode(node);
                 docNode = docNode->NextSiblingElement("node");
             }
-            pair<string, Chapter> tmp(chapter.getChapterName(), chapter);
-            story.insert(tmp);
+            gm.addChapter(chapter);
             docChapter = docChapter->NextSiblingElement("chapter");
         }
         //return XML_SUCCESS;
     }
-
+    int tr= 0;
 }
 
-void Parser::loadCharacter(map<string, Statistic> &stats, const char *path) {
+void Parser::loadCharacter(GameManager& gm, const char *path) {
     XMLDocument doc;
     doc.LoadFile(path);
+
 
     XMLNode *docRoot = NULL;
     if (!Check::isFileNull(&doc, path)) {
@@ -126,16 +127,16 @@ void Parser::loadCharacter(map<string, Statistic> &stats, const char *path) {
         if (!Check::isElementNull(docRoot, "stat")) {
             docStats = docRoot->FirstChildElement("stat");
         }
-
-        //parcours des chapitres
+        Player p;
+        //parcours des stats
         while (docStats != NULL) {
             Statistic stat;
+            stat.setStatValue(0);
             stat.setStatName(docStats->GetText());
-
-            pair<string, Statistic> tmp(stat.getStatName(), stat);
-            stats.insert(tmp);
+            p.addStat(stat);
             docStats = docStats->NextSiblingElement("stat");
         }
+        gm.setPlayer(p);
         //return XML_SUCCESS;
     }
 }
