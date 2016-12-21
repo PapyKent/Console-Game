@@ -12,7 +12,6 @@
                   <statName>Force</statName>
                   <value>9</value>
                </stat>
-               <itemRequired>levier</itemRequired>
             </condition>
          </choice>
 
