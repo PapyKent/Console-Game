@@ -1,48 +1,26 @@
 <story>
    <chapter>
-      <chapterName>Chapitre 1 : Faux départ</chapterName>
+      <chapterName>Introduction</chapterName>
       <node>
-         <nodeName>Le probleme</nodeName>
-         <nodeText>Un rocher vous bloque le chemin.</nodeText>
+         <nodeName>Intro1</nodeName>
+         <nodeText>Tu incarnes une IA qui a ete place dans un corp artificiel. Tu es une experience scientifique visant
+            a tester une nouvelle puce, basee sur le système de Generation Avancee de Mouvements, Emotions et Reactions.
+         </nodeText>
          <choice>
-            <choiceText>Pousser le rocher</choiceText>
-            <destination>2</destination>
-            <condition>
-               <stat>
-                  <statName>Force</statName>
-                  <value>9</value>
-               </stat>
-            </condition>
-         </choice>
-
-         <choice>
-            <choiceText>Faire le tour du rocher</choiceText>
-            <destination>3</destination>
-            <condition>
-               <stat>
-                  <statName>Intelligence</statName>
-                  <value>2</value>
-               </stat>
-            </condition>
-            <itemReward>Fleur</itemReward>
-         </choice>
-
-         <choice>
-            <choiceText>Sauter par dessus</choiceText>
-            <destination>3</destination>
-            <condition>
-               <stat>
-                  <statName>noStat</statName>
-                  <value>0</value>
-               </stat>
-               <itemRequired>Pieds</itemRequired>
-            </condition>
+            <choiceText>Continuer</choiceText>
+            <destination>Intro2</destination>
          </choice>
       </node>
-
-
       <node>
-         <nodeName>Le probleme2</nodeName>
+         <nodeName>Intro2</nodeName>
+         <nodeText>Je suis ton createur.</nodeText>
+         <choice>
+            <choiceText>Continuer</choiceText>
+            <destination>Premiers pas</destination>
+         </choice>
+      </node>
+      <node>
+         <nodeName>Premiers pas</nodeName>
          <nodeText>Un rocher vous bloque le chemin.2</nodeText>
          <choice>
             <choiceText>Pousser le rocher2</choiceText>
@@ -59,7 +37,7 @@
    </chapter>
 
    <chapter>
-      <chapterName>Chapitre 2 : Faux départ</chapterName>
+      <chapterName>Chapitre 2 : Faux depart</chapterName>
       <node>
          <nodeName>Apres le rocher</nodeName>
          <nodeText>Un autre rocher vous bloque le chemin.</nodeText>

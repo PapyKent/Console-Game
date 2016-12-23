@@ -12,6 +12,7 @@ private:
     map<string, Chapter> story;
     Player player;
     Chapter* currentChapter;
+    Node *currentNode;
 public:
 
     GameManager();
@@ -25,7 +26,15 @@ public:
     void setCurrentChapter(Chapter *  chapter);
     Chapter* getCurrentChapter();
 
-    void printNode(string id);
+    void setCurrentNode(Node *node);
+
+    Node *getCurrentNode();
+
+    void printNode();
+
+    void initCurrent();
+
+    bool gameLoop();
 };
 
 #endif // GAMEMANAGER_H

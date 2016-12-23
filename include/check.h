@@ -17,6 +17,8 @@ public :
     static bool isFileNull(const tinyxml2::XMLDocument *pointer, const char *path);;
 
     static bool isTypeCorrect(const tinyxml2::XMLElement *pointer);;
+
+    static bool isInt(string s);
 };
 
 

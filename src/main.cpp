@@ -40,8 +40,11 @@ int main(int argc, char *argv[])
     p.addItemToBag("torche");*/
 
     //story.printNode("Le probleme");
-    gm.setCurrentChapter(gm.findChapter("Chapitre 1 : Faux départ"));
-    gm.printNode("Le probleme");
+    gm.initCurrent();
+    bool restart = true;
+    while (restart) {
+        restart = gm.gameLoop();
+    }
     cout << "Hello World!" << endl;
     return 0;
 }
