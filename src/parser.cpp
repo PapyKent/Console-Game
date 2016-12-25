@@ -90,11 +90,11 @@ void Parser::loadStory(GameManager& gm, const char *path) {
                         }
                     }
                     XMLElement *docReward;
-                    docReward = docChoice->FirstChildElement("itemReward");
+                    docReward = docChoice->FirstChildElement("reward");
 
                     //check si itemReward
                     if (docReward != NULL) {
-                        choice.setItemReward(docReward->GetText());
+                        choice.setReward(docReward->GetText());
                     }
 
                     node.addChoice(choice);

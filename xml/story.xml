@@ -9,8 +9,10 @@
          </nodeText>
          <choice>
             <choiceText>Continuer</choiceText>
-             <destination>fin</destination>
+             <destination>Intro2</destination>
+             <reward>Joie+2</reward>
          </choice>
+
       </node>
       <node>
          <nodeName>Intro2</nodeName>
@@ -33,6 +35,7 @@
                </stat>
                <itemRequired>levier</itemRequired>
             </condition>
+             <reward>Joie+2</reward>
          </choice>
 
           <choice>
@@ -40,10 +43,9 @@
               <destination>Apres le rocher</destination>
               <condition>
                   <stat>
-                      <statName>noStat</statName>
-                      <value>0</value>
+                      <statName>Joie</statName>
+                      <value>1</value>
                   </stat>
-                  <itemRequired>levier</itemRequired>
               </condition>
           </choice>
       </node>

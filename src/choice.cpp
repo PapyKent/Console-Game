@@ -10,7 +10,7 @@ Choice::Choice(string choiceText,string choiceDestination,Statistic statRequired
     this->choiceDestination = choiceDestination;
     this->statRequired = statRequired;
     this->itemRequired = itemRequired;
-    this->itemReward = itemReward;
+    this->reward = itemReward;
 }
 
 const string& Choice::getChoiceText(){
@@ -47,11 +47,11 @@ void Choice::setItemRequired(const string &itemRequired){
     this->itemRequired = itemRequired;
 }
 
-const string& Choice::getItemReward(){
-    return this->itemReward;
+const string &Choice::getReward() {
+    return this->reward;
 }
 
-void Choice::setItemReward(const string &itemReward){
-    this->itemReward = itemReward;
+void Choice::setReward(const string &itemReward) {
+    this->reward = itemReward;
 }
 

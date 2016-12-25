@@ -58,3 +58,17 @@ void Player::setPlayerBag(const map<string, string> &playerBag) {
     this->playerStats = playerStats;
 }
 
+void Player::resetStats() {
+    for (map<string, Statistic>::iterator it = this->playerStats.begin(); it != this->playerStats.end(); ++it) {
+        it->second.setStatValue(0);
+    }
+}
+
+void Player::resetBag() {
+    this->playerBag.clear();
+}
+
+map<string, Statistic> *Player::getStatsList() {
+    return &playerStats;
+}
+

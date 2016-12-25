@@ -19,8 +19,9 @@ public:
     Player(string playerName);
 
     void setPlayerBag(const map<string, string> &playerBag);
-
     void setPlayerStats(const map<string, Statistic> &playerStats);
+
+    map<string, Statistic> *getStatsList();
 
     string &getPlayerName();
 
@@ -35,6 +36,10 @@ public:
 
     bool removeStat(string stat);
     Statistic* findStat(string);
+
+    void resetStats();
+
+    void resetBag();
 };
 
 #endif // PLAYER_H

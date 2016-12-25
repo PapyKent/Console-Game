@@ -8,7 +8,7 @@ private:
     string choiceDestination;
     Statistic statRequired;
     string itemRequired;
-    string itemReward;
+    string reward;
 public:
     Choice();
     Choice(string,string,Statistic,string,string);
@@ -25,8 +25,9 @@ public:
     const string &getItemRequired();
     void setItemRequired(const string &itemRequired);
 
-    const string &getItemReward();
-    void setItemReward(const string &itemReward);
+    const string &getReward();
+
+    void setReward(const string &reward);
 
 };
 

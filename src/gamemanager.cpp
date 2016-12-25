@@ -94,29 +94,55 @@ bool GameManager::gameLoop() {
 
         printNode();
         int choice = checkUserInput(0, getCurrentNode()->getChoiceList().size());
+        bool validStat = false, validItem = false;
 
-        string destination = getCurrentNode()->getChoiceList()[choice].getChoiceDestination();
+        if (this->currentNode->getChoiceList()[choice].getStatRequired().getStatName() != "") {
+            if (this->currentNode->getChoiceList()[choice].getStatRequired().getStatValue() <= choice) {
+                validStat = true;
+            } else {
+                cout << "Une de vos emotions n'est pas assez developpee." << endl << endl;
+            }
+        } else validStat = true;
 
-        if (destination.compare("mort") == 0) {
-            cout << " -- YOU DIE -- " << endl;
-            cout << "Continuer ? 1:Oui 2:Non" << endl;
-            choice = checkUserInput(1, 3);
-            if (choice == 1) return true;
-            else return false;
-        }
 
-        if (destination.compare("fin") == 0) {
-            cout << " -- THE END -- " << endl << endl;
-            cout << "Recommencer ? 1:Oui 2:Non" << endl;
-            choice = checkUserInput(1, 3);
-            if (choice == 1) return true;
-            else return false;
-        }
-        //on regarde si la destination entraine un changement de chapitre
-        if (this->currentChapter->findNode(destination) == NULL) {
-            setChapter(destination);
-        } else {
-            this->currentNode = this->currentChapter->findNode(destination);
+        if (this->currentNode->getChoiceList()[choice].getItemRequired() != "") {
+            if (this->getPlayer()->isInBag(this->currentNode->getChoiceList()[choice].getItemRequired())) {
+                validItem = true;
+            } else {
+                cout << endl << endl << "Il vous manque un certain objet." << endl << endl;
+            }
+        } else validItem = true;
+
+
+        if (validItem && validStat) {
+            string destination = this->currentNode->getChoiceList()[choice].getChoiceDestination();
+
+            if (destination.compare("mort") == 0) {
+                cout << " -- YOU DIE -- " << endl;
+                cout << "Continuer ? 1:Oui 2:Non" << endl;
+                choice = checkUserInput(1, 3);
+                if (choice == 1) return true;
+                else return false;
+            }
+
+            if (destination.compare("fin") == 0) {
+                cout << " -- THE END -- " << endl << endl;
+                cout << "Recommencer ? 1:Oui 2:Non" << endl;
+                choice = checkUserInput(1, 3);
+                if (choice == 1) return true;
+                else return false;
+            }
+            //on regarde si la destination entraine un changement de chapitre
+            if (this->currentChapter->findNode(destination) == NULL) {
+                setChapter(destination);
+                this->currentNode = this->currentChapter->findNode(destination);
+            } else {
+                string reward = this->currentNode->getChoiceList()[choice].getReward();
+                if (reward != "")
+                    rewardEffect(reward);
+                this->currentNode = this->currentChapter->findNode(destination);
+
+            }
         }
 
         cout << "------------------------------" << endl << endl;
@@ -172,8 +198,35 @@ void GameManager::setChapter(string destination) {
     }
 }
 
-void GameManager::initPlayer() {
-    this->player = new Player();
+void GameManager::resetPlayer() {
+    this->player->resetBag();
+    this->player->resetStats();
+}
+
+void GameManager::rewardEffect(string reward) {
+    for (map<string, Statistic>::iterator it = this->getPlayer()->getStatsList()->begin();
+         it != this->getPlayer()->getStatsList()->end(); ++it) {
+        regex statNameRegex(it->first);
+        std::smatch sm;
+        if (regex_search(reward, sm, statNameRegex)) {
+            string statName = sm.str();
+            if (this->getPlayer()->findStat(statName) != NULL) {
+                regex valueRegex("[+-]?([[:digit:]]+)");
+                int value;
+                std::smatch sm1;
+                if (regex_search(reward, sm1, valueRegex)) {
+                    value = stoi(sm1.str());
+                    this->getPlayer()->findStat(statName)->setStatValue(
+                            this->getPlayer()->findStat(statName)->getStatValue() + value);
+                    return;
+                }
+            }
+
+        }
+    }
+
+    this->getPlayer()->addItemToBag(reward);
+
 
 }
 

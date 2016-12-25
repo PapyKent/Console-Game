@@ -19,13 +19,12 @@ int main(int argc, char *argv[])
     p.addItemToBag("torche");*/
 
     //story.printNode("Le probleme");
-
+    // gm.rewardEffect("patate");
 
     bool restart = true;
     while (restart) {
-        //creer et reset le joueur, son sac, ses stats
-        gm.initPlayer();
-        gm.getPlayer()->setPlayerName("Jo");
+        gm.resetPlayer();
+        //set stats
         gm.initCurrent();
         restart = gm.gameLoop();
     }

@@ -41,7 +41,9 @@ public:
 
     void setChapter(string destination);
 
-    void initPlayer();
+    void resetPlayer();
+
+    void rewardEffect(string reward);
 };
 
 #endif // GAMEMANAGER_H
