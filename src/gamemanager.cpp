@@ -2,7 +2,7 @@
 #include "../include/check.h"
 
 GameManager::GameManager() {
-    player = Player();
+    player = new Player();
 }
 
 void GameManager::addChapter(Chapter chapter) {
@@ -17,11 +17,11 @@ Chapter *GameManager::findChapter(string key) {
         return NULL;
 }
 
-Player &GameManager::getPlayer() {
-    this->player;
+Player *GameManager::getPlayer() {
+    return this->player;
 }
 
-void GameManager::setPlayer(Player p) {
+void GameManager::setPlayer(Player *p) {
     this->player = p;
 
 }
@@ -55,15 +55,15 @@ void GameManager::printNode() {
             cout << i << ": " << node->getChoiceList()[i].getChoiceText() << endl;
             if (node->getChoiceList()[i].getItemRequired() != "") {
                 string item = node->getChoiceList()[i].getItemRequired();
-                if (player.isInBag(item))
+                if (player->isInBag(item))
                     cout << "item req : " << item << endl;
                 else
                     cout << "You need a special item to do this. " << endl;
             }
             if (node->getChoiceList()[i].getStatRequired().getStatName() != "noStat") {
                 string statName = node->getChoiceList()[i].getStatRequired().getStatName();
-                if (player.findStat(statName) != NULL) {
-                    if (player.findStat(statName)->getStatValue() >=
+                if (player->findStat(statName) != NULL) {
+                    if (player->findStat(statName)->getStatValue() >=
                         node->getChoiceList()[i].getStatRequired().getStatValue()) {
                         cout << "stat req : " << statName << " val: "
                              << node->getChoiceList()[i].getStatRequired().getStatValue() << endl << endl;
@@ -80,7 +80,7 @@ void GameManager::printNode() {
 }
 
 void GameManager::initCurrent() {
-    this->setCurrentChapter(this->findChapter("Introduction"));
+    this->setCurrentChapter(this->findChapter("Chapitre 1 : Introduction"));
     this->setCurrentNode(this->getCurrentChapter()->findNode("Intro1"));
 }
 
@@ -93,44 +93,89 @@ bool GameManager::gameLoop() {
         cout << this->currentChapter->getChapterName() << endl << endl;
 
         printNode();
-        int choice;
-        string input = "";
-        bool validInput = false;
-        while (!validInput) {
-            cout << "Quelle est votre decision ?" << endl;
-            cin >> input;
-            if (Check::isInt(input)) {
-                choice = stoi(input);
-                if (choice >= 0 && choice < getCurrentNode()->getChoiceList().size()) {
-                    validInput = true;
-                }
-            }
-        }
+        int choice = checkUserInput(0, getCurrentNode()->getChoiceList().size());
 
         string destination = getCurrentNode()->getChoiceList()[choice].getChoiceDestination();
 
-        /*
-          un robot ne peut porter atteinte à un être humain, ni, en restant passif, permettre qu'un être humain soit exposé au danger ;
-          un robot doit obéir aux ordres qui lui sont donnés par un être humain, sauf si de tels ordres entrent en conflit avec la première loi ;
-          un robot doit protéger son existence tant que cette protection n'entre pas en conflit avec la première ou la deuxième loi.
-         */
         if (destination.compare("mort") == 0) {
             cout << " -- YOU DIE -- " << endl;
             cout << "Continuer ? 1:Oui 2:Non" << endl;
-            //passer le bazar dans une fonction
+            choice = checkUserInput(1, 3);
+            if (choice == 1) return true;
+            else return false;
+        }
+
+        if (destination.compare("fin") == 0) {
+            cout << " -- THE END -- " << endl << endl;
+            cout << "Recommencer ? 1:Oui 2:Non" << endl;
+            choice = checkUserInput(1, 3);
+            if (choice == 1) return true;
+            else return false;
         }
         //on regarde si la destination entraine un changement de chapitre
         if (this->currentChapter->findNode(destination) == NULL) {
-            //passer au chap suivant et checker
+            setChapter(destination);
         } else {
             this->currentNode = this->currentChapter->findNode(destination);
         }
 
+        cout << "------------------------------" << endl << endl;
     }
+
 
 }
 
 
+int GameManager::checkUserInput(int lowerValue, int upperValue) {
+    int choice;
+    string input = "";
+    bool validInput = false;
+    while (!validInput) {
+        cout << "Quelle est votre decision ?" << endl;
+        cin >> input;
+        if (Check::isInt(input)) {
+            choice = stoi(input);
+            if (choice >= lowerValue && choice < upperValue) {
+                validInput = true;
+            }
+        }
+    }
+    return choice;
+}
+
+
+void GameManager::setChapter(string destination) {
+
+    string chapName;
+    string nextChapName;
+    regex integer("[[:digit:]]+");
+    std::smatch sm;
+
+    int curChapNumber;
+    chapName = this->currentChapter->getChapterName();
+    if (regex_search(chapName, sm, integer))
+        curChapNumber = stoi(sm.str());
+    else cout << "error " << endl;
+
+    for (map<string, Chapter>::iterator it = story.begin(); it != story.end(); ++it) {
+        int nextChapNumber;
+        nextChapName = it->first;
+        if (regex_search(nextChapName, sm, integer))
+            nextChapNumber = stoi(sm.str());
+        else cout << "error " << endl;
+
+        if (nextChapNumber > curChapNumber) {
+            Chapter *tmp = &(it->second);
+            if (tmp->findNode(destination))
+                this->setCurrentChapter(tmp);
+        }
+    }
+}
+
+void GameManager::initPlayer() {
+    this->player = new Player();
+
+}
 
 
 

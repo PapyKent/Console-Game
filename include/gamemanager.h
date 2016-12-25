@@ -2,7 +2,7 @@
 #define GAMEMANAGER_H
 #include "chapter.h"
 #include "player.h"
-
+#include <regex>
 
 using namespace std;
 
@@ -10,7 +10,7 @@ class GameManager
 {
 private:
     map<string, Chapter> story;
-    Player player;
+    Player *player;
     Chapter* currentChapter;
     Node *currentNode;
 public:
@@ -20,8 +20,9 @@ public:
     void addChapter(Chapter);
     Chapter* findChapter(string);
 
-    Player& getPlayer();
-    void setPlayer(Player);
+    Player *getPlayer();
+
+    void setPlayer(Player *);
 
     void setCurrentChapter(Chapter *  chapter);
     Chapter* getCurrentChapter();
@@ -35,6 +36,12 @@ public:
     void initCurrent();
 
     bool gameLoop();
+
+    int checkUserInput(int lowerValue, int upperValue);
+
+    void setChapter(string destination);
+
+    void initPlayer();
 };
 
 #endif // GAMEMANAGER_H

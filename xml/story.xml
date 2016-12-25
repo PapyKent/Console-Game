@@ -1,14 +1,15 @@
 <story>
    <chapter>
-      <chapterName>Introduction</chapterName>
+       <chapterName>Chapitre 1 : Introduction</chapterName>
       <node>
          <nodeName>Intro1</nodeName>
          <nodeText>Tu incarnes une IA qui a ete place dans un corp artificiel. Tu es une experience scientifique visant
-            a tester une nouvelle puce, basee sur le système de Generation Avancee de Mouvements, Emotions et Reactions.
+             a tester une nouvelle puce, basee sur le systeme de Generation Avancee de Mouvements, Emotions et
+             Reactions.
          </nodeText>
          <choice>
             <choiceText>Continuer</choiceText>
-            <destination>Intro2</destination>
+             <destination>fin</destination>
          </choice>
       </node>
       <node>
@@ -33,6 +34,18 @@
                <itemRequired>levier</itemRequired>
             </condition>
          </choice>
+
+          <choice>
+              <choiceText>Contourner le rocher</choiceText>
+              <destination>Apres le rocher</destination>
+              <condition>
+                  <stat>
+                      <statName>noStat</statName>
+                      <value>0</value>
+                  </stat>
+                  <itemRequired>levier</itemRequired>
+              </condition>
+          </choice>
       </node>
    </chapter>
 
@@ -43,7 +56,7 @@
          <nodeText>Un autre rocher vous bloque le chemin.</nodeText>
          <choice>
             <choiceText>Pousser le rocher</choiceText>
-            <destination>21</destination>
+             <destination>mort</destination>
             <condition>
                <stat>
                   <statName>noStat</statName>

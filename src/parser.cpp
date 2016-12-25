@@ -127,16 +127,17 @@ void Parser::loadCharacter(GameManager& gm, const char *path) {
         if (!Check::isElementNull(docRoot, "stat")) {
             docStats = docRoot->FirstChildElement("stat");
         }
-        Player p;
+
         //parcours des stats
         while (docStats != NULL) {
             Statistic stat;
             stat.setStatValue(0);
             stat.setStatName(docStats->GetText());
-            p.addStat(stat);
+            gm.getPlayer()->addStat(stat);
             docStats = docStats->NextSiblingElement("stat");
         }
-        gm.setPlayer(p);
+        gm.getPlayer()->setPlayerName("Carl");
+
         //return XML_SUCCESS;
     }
 }
