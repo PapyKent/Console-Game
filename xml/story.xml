@@ -3,8 +3,7 @@
         <chapterName>Chapitre 1 : Introduction</chapterName>
         <node>
             <nodeName>Intro1</nodeName>
-            <nodeText>? : "Bonjour Wagner ! Comment vas-tu ?"
-            </nodeText>
+            <nodeText>? : "Bonjour Wagner ! Comment vas-tu ?"</nodeText>
             <choice>
                 <choiceText>"Je vais bien."</choiceText>
                 <destination>Intro2.1</destination>
@@ -64,8 +63,7 @@
             <nodeName>Explications Projet</nodeName>
             <nodeText>Turin : "Ce projet te concerne directement! Tu es une experience scientifique visant a tester une
                 nouvelle Intelligence Artificielle, basee sur le systeme de Generation Avancee de Mouvements, Emotions
-                et
-                Reactions. Systeme que j'ai invente."
+                et Reactions. Systeme que j'ai invente."
             </nodeText>
             <choice>
                 <choiceText>...</choiceText>
@@ -75,9 +73,8 @@
         <node>
             <nodeName>IntroBut</nodeName>
             <nodeText>Turin : "Voici ce que je te demande Wagner, tu es actuellement dans un appartement non loin de mon
-                lieu de travail,
-                l'entreprise FIIDA. Je vais te demander de venir me rejoindre, et d'agir de sorte a ce que ta ...,
-                disons condition, ne soit pas decouverte."
+                lieu de travail, l'entreprise FIIDA. Je vais te demander de venir me rejoindre, et d'agir de sorte a ce
+                que ta ..., disons condition, ne soit pas decouverte."
             </nodeText>
             <choice>
                 <choiceText>Je...</choiceText>
@@ -89,7 +86,7 @@
             <nodeName>IntroFin</nodeName>
             <nodeText>Turin : "Tres bien! Ah oui au fait! Tu es equipe de modules d'emotions, qui vont se developper
                 selon tes actions. N'hesite pas a les controler a tout instant a l'aide de la commande "!stat". Je reste
-                en contatc permanent avec toi. Bon courage !"
+                en contact permanent avec toi. Bon courage !"
             </nodeText>
             <choice>
                 <choiceText>"Tres bien."</choiceText>
@@ -169,7 +166,6 @@
             <nodeName>Rue</nodeName>
             <nodeText>Les passants n'ont pas l'air de faire tres attention a vous. Un garde controle les gens a l'entree
                 de la tour. Vous arrivez a son niveau.
-
                 Garde : "Bonjour, vous travaillez ici ?"
             </nodeText>
             <choice>
@@ -188,7 +184,7 @@
 
             <choice>
                 <choiceText>Montrer le badge.</choiceText>
-                <destination>Controle</destination>
+                <destination>toAccueil</destination>
                 <condition>
                     <stat>
                         <statName>noStat</statName>
@@ -258,7 +254,7 @@
 
         <node>
             <nodeName>toAccueil</nodeName>
-            <nodeText>Garde : "Tres bien... Je vais vous amener a l'accueil, ils vont s'occuper de vous."</nodeText>
+            <nodeText>Garde : "Tres bien... Je vais vous amener a l'accueil, ils vont s'occuper de vous. "</nodeText>
             <choice>
                 <choiceText>"Merci."</choiceText>
                 <destination>Accueil</destination>
@@ -283,5 +279,7 @@
 
     </chapter>
 </story>
+
+
 
 
