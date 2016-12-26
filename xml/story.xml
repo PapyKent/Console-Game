@@ -3,28 +3,28 @@
         <chapterName>Chapitre 1 : Introduction</chapterName>
         <node>
             <nodeName>Intro1</nodeName>
-            <nodeText>? : Bonjour Wagner ! Comment vas-tu ?
+            <nodeText>? : "Bonjour Wagner ! Comment vas-tu ?"
             </nodeText>
             <choice>
-                <choiceText>Je vais bien.</choiceText>
+                <choiceText>"Je vais bien."</choiceText>
                 <destination>Intro2.1</destination>
                 <reward>Joie+1</reward>
             </choice>
             <choice>
-                <choiceText>Qui etes-vous?</choiceText>
+                <choiceText>"Qui etes-vous?"</choiceText>
                 <destination>Intro2</destination>
             </choice>
 
         </node>
         <node>
             <nodeName>Intro2</nodeName>
-            <nodeText>? : Je suis le docteur Turin, ton createur et initiateur de ce projet.</nodeText>
+            <nodeText>? : "Je suis le docteur Turin, ton createur et initiateur de ce projet."</nodeText>
             <choice>
-                <choiceText>Quel projet?</choiceText>
+                <choiceText>"Quel projet?"</choiceText>
                 <destination>Explications Projet</destination>
             </choice>
             <choice>
-                <choiceText>Mon... Mon createur? Que voulez-vous dire?</choiceText>
+                <choiceText>"Mon... Mon createur? Que voulez-vous dire?"</choiceText>
                 <destination>Intro3</destination>
                 <reward>Surprise+1</reward>
             </choice>
@@ -32,14 +32,14 @@
 
         <node>
             <nodeName>Intro2.1</nodeName>
-            <nodeText>? : Tu m'en vois ravi! Je suis le docteur Turin, ton createur et initiateur de ce projet.
+            <nodeText>? : "Tu m'en vois ravi! Je suis le docteur Turin, ton createur et initiateur de ce projet."
             </nodeText>
             <choice>
-                <choiceText>Quel projet?</choiceText>
+                <choiceText>"Quel projet?"</choiceText>
                 <destination>Explications Projet</destination>
             </choice>
             <choice>
-                <choiceText>Mon... Mon createur? Que voulez-vous dire?</choiceText>
+                <choiceText>"Mon... Mon createur? Que voulez-vous dire?"</choiceText>
                 <destination>Intro3</destination>
                 <reward>Surprise+1</reward>
             </choice>
@@ -47,26 +47,25 @@
 
         <node>
             <nodeName>Intro3</nodeName>
-            <nodeText>Turin : Tu es mon invention, l'IA Wagner, placee dans un corp artificiel dans le cadre de
-                l'experience
-                E242.
+            <nodeText>Turin : "Tu es mon invention, l'IA Wagner, placee dans un corp artificiel dans le cadre de
+                l'experience E242."
             </nodeText>
             <choice>
-                <choiceText>Je... je ne comprends pas...</choiceText>
+                <choiceText>"Je... je ne comprends pas..."</choiceText>
                 <destination>IntroBut</destination>
             </choice>
             <choice>
-                <choiceText>L'experience E242? En quoi consiste-t-elle?</choiceText>
+                <choiceText>"L'experience E242? En quoi consiste-t-elle?"</choiceText>
                 <destination>Explications Projet</destination>
             </choice>
         </node>
 
         <node>
             <nodeName>Explications Projet</nodeName>
-            <nodeText>Turin : Ce projet te concerne directement! Tu es une experience scientifique visant a tester une
-                nouvelle
-                Intelligence Artificielle, basee sur le systeme de Generation Avancee de Mouvements, Emotions et
-                Reactions. Systeme que j'ai invente.
+            <nodeText>Turin : "Ce projet te concerne directement! Tu es une experience scientifique visant a tester une
+                nouvelle Intelligence Artificielle, basee sur le systeme de Generation Avancee de Mouvements, Emotions
+                et
+                Reactions. Systeme que j'ai invente."
             </nodeText>
             <choice>
                 <choiceText>...</choiceText>
@@ -75,76 +74,214 @@
         </node>
         <node>
             <nodeName>IntroBut</nodeName>
-            <nodeText>Turin : Voici ce que je te demande Wagner, tu es actuellement dans un appartement non loin de mon
+            <nodeText>Turin : "Voici ce que je te demande Wagner, tu es actuellement dans un appartement non loin de mon
                 lieu de travail,
                 l'entreprise FIIDA. Je vais te demander de venir me rejoindre, et d'agir de sorte a ce que ta ...,
-                disons condition, ne soit pas decouverte.
+                disons condition, ne soit pas decouverte."
             </nodeText>
             <choice>
-                <choiceText>Tres bien.</choiceText>
+                <choiceText>Je...</choiceText>
                 <destination>IntroFin</destination>
             </choice>
         </node>
 
         <node>
             <nodeName>IntroFin</nodeName>
-            <nodeText>Turin : Tres bien. Ah oui au fait! Tu es equipe de modules d'emotions, qui vont se developper
+            <nodeText>Turin : "Tres bien! Ah oui au fait! Tu es equipe de modules d'emotions, qui vont se developper
                 selon tes actions. N'hesite pas a les controler a tout instant a l'aide de la commande "!stat". Je reste
-                en contatc permanent avec toi. Bon courage !
+                en contatc permanent avec toi. Bon courage !"
             </nodeText>
             <choice>
-                <choiceText>Tres bien.</choiceText>
-                <destination>IntroFin</destination>
+                <choiceText>"Tres bien."</choiceText>
+                <destination>Commencement</destination>
             </choice>
         </node>
 
-
-        <node>
-            <nodeName>Premiers pas</nodeName>
-            <nodeText>Un rocher vous bloque le chemin.2</nodeText>
-            <choice>
-                <choiceText>Pousser le rocher2</choiceText>
-                <destination>22</destination>
-                <condition>
-                    <stat>
-                        <statName>noStat</statName>
-                        <value>0</value>
-                    </stat>
-                    <itemRequired>levier</itemRequired>
-                </condition>
-                <reward>Joie+2</reward>
-            </choice>
-
-            <choice>
-                <choiceText>Contourner le rocher</choiceText>
-                <destination>Apres le rocher</destination>
-                <condition>
-                    <stat>
-                        <statName>Joie</statName>
-                        <value>1</value>
-                    </stat>
-                </condition>
-            </choice>
-        </node>
     </chapter>
-
     <chapter>
-        <chapterName>Chapitre 2 : Faux depart</chapterName>
+        <chapterName>Chapitre 2 : Premier pas</chapterName>
         <node>
-            <nodeName>Apres le rocher</nodeName>
-            <nodeText>Un autre rocher vous bloque le chemin.</nodeText>
+            <nodeName>Commencement</nodeName>
+            <nodeText>La petite piece ou vous etes a pour seules fournitures un lit et un bureau, sur lequel est posee
+                une malette. La porte d'entree est situee au bout d'un petit couloir. Vous apercevez un livre qui
+                depasse de sous le lit.
+            </nodeText>
             <choice>
-                <choiceText>Pousser le rocher</choiceText>
-                <destination>mort</destination>
+                <choiceText>Ouvrir la malette</choiceText>
+                <destination>Malette</destination>
+            </choice>
+            <choice>
+                <choiceText>Lire le livre</choiceText>
+                <destination>Livre</destination>
+            </choice>
+
+            <choice>
+                <choiceText>Sortir de l'appartement</choiceText>
+                <destination>Rue</destination>
+            </choice>
+        </node>
+
+
+        <node>
+            <nodeName>Malette</nodeName>
+            <nodeText>La malette n'est pas verouille, a l'interieur se trouve des badges a votre nom.</nodeText>
+            <choice>
+                <choiceText>Prendre un badge.</choiceText>
+                <destination>Commencement</destination>
+                <reward>Badge</reward>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>Livre</nodeName>
+            <nodeText>C'est un livre pour enfant. L'histoire raconte la vie d'un chien abandonnee par ses maitres.
+            </nodeText>
+            <choice>
+                <choiceText>Jeter le livre.</choiceText>
+                <destination>Commencement</destination>
+                <reward>Mepris+1</reward>
+            </choice>
+
+            <choice>
+                <choiceText>Reposer le livre. Penser a ce chien vous a rendu triste.</choiceText>
+                <destination>Commencement</destination>
+                <reward>Tristesse+1</reward>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>Sortie</nodeName>
+            <nodeText>Vous vous dirigez vers la porte. Elle ne semble pas verouillee. Vous descendez des escaliers et
+                vous retrouvez dans la rue. Vous apercevez au loin une grande tour de verre, sur laquelle figure le logo
+                FIIDA.
+            </nodeText>
+            <choice>
+                <choiceText>Retourner dans l'appartement.</choiceText>
+                <destination>Commencement</destination>
+            </choice>
+            <choice>
+                <choiceText>Se diriger vers la tour.</choiceText>
+                <destination>Rue</destination>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>Rue</nodeName>
+            <nodeText>Les passants n'ont pas l'air de faire tres attention a vous. Un garde controle les gens a l'entree
+                de la tour. Vous arrivez a son niveau.
+
+                Garde : "Bonjour, vous travaillez ici ?"
+            </nodeText>
+            <choice>
+                <choiceText>"Oui."</choiceText>
+                <destination>Controle</destination>
+            </choice>
+            <choice>
+                <choiceText>"Non."</choiceText>
+                <destination>Controle2</destination>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>Controle</nodeName>
+            <nodeText>Garde : "Puis-je voir votre badge ?"</nodeText>
+
+            <choice>
+                <choiceText>Montrer le badge.</choiceText>
+                <destination>Controle</destination>
                 <condition>
                     <stat>
                         <statName>noStat</statName>
                         <value>0</value>
                     </stat>
-                    <itemRequired>mains</itemRequired>
+                    <itemRequired>Badge</itemRequired>
                 </condition>
             </choice>
+
+            <choice>
+                <choiceText>"Je l'ai oublie chez moi."</choiceText>
+                <destination>Degage</destination>
+            </choice>
+
         </node>
+
+        <node>
+            <nodeName>Degage</nodeName>
+            <nodeText>Garde : "Et bien allez le chercher!""</nodeText>
+            <choice>
+                <choiceText>"S'il vous plait je suis presse! Je ne peux pas me permettre d'arriver en retard. Je vais me
+                    faire renvoyer !"
+                </choiceText>
+                <destination>toAccueil</destination>
+                <condition>
+                    <stat>
+                        <statName>Tristesse</statName>
+                        <value>5</value>
+                    </stat>
+                </condition>
+            </choice>
+            <choice>
+                <choiceText>Frapper le garde.</choiceText>
+                <destination>Arrestation</destination>
+                <reward>Colere+1</reward>
+            </choice>
+            <choice>
+                <choiceText>Rentrer chez vous.</choiceText>
+                <destination>Commencement</destination>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>Arrestation</nodeName>
+            <nodeText>Le garde s'enerve et vous arrete. La police arrive et vous controle. Ils se rendent compte que
+                vous n'etes pas humain.
+            </nodeText>
+            <choice>
+                <choiceText>...</choiceText>
+                <destination>fail</destination>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>Controle2</nodeName>
+            <nodeText>Garde : "Je peux savoir ce qui vous amene ici ?"</nodeText>
+            <choice>
+                <choiceText>"J'ai un rendez-vous."</choiceText>
+                <destination>toAccueil</destination>
+            </choice>
+            <choice>
+                <choiceText>"Non."</choiceText>
+                <destination>Arrestation</destination>
+                <reward>Mepris+1</reward>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>toAccueil</nodeName>
+            <nodeText>Garde : "Tres bien... Je vais vous amener a l'accueil, ils vont s'occuper de vous."</nodeText>
+            <choice>
+                <choiceText>"Merci."</choiceText>
+                <destination>Accueil</destination>
+                <reward>Joie+1</reward>
+            </choice>
+            <choice>
+                <choiceText>Ne pas repondre</choiceText>
+                <destination>Accueil</destination>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>Accueil</nodeName>
+            <nodeText>-----En developpement -----</nodeText>
+            <choice>
+                <choiceText>Terminer la demo</choiceText>
+                <destination>fin</destination>
+            </choice>
+
+        </node>
+
+
     </chapter>
 </story>
+
 

@@ -56,19 +56,19 @@ void GameManager::printNode() {
             if (node->getChoiceList()[i].getItemRequired() != "") {
                 string item = node->getChoiceList()[i].getItemRequired();
                 if (player->isInBag(item))
-                    cout << "item req : " << item << endl;
+                    cout << "Item necessaire : " << item << endl;
                 else
-                    cout << "You need a special item to do this. " << endl;
+                    cout << "Il vous manque un certain objet. " << endl;
             }
             if (node->getChoiceList()[i].getStatRequired().getStatName() != "noStat") {
                 string statName = node->getChoiceList()[i].getStatRequired().getStatName();
                 if (player->findStat(statName) != NULL) {
                     if (player->findStat(statName)->getStatValue() >=
                         node->getChoiceList()[i].getStatRequired().getStatValue()) {
-                        cout << "stat req : " << statName << " val: "
+                        cout << "Module utilise : " << statName << ". Niveau requis: "
                              << node->getChoiceList()[i].getStatRequired().getStatValue() << endl << endl;
                     } else
-                        cout << "You need more " << statName << "." << endl;
+                        cout << "Votre module de  " << statName << " n'est pas assez developpe." << endl;
 
                 }
             }
@@ -97,7 +97,9 @@ bool GameManager::gameLoop() {
         bool validStat = false, validItem = false;
         if (choice != -1) {
             if (this->currentNode->getChoiceList()[choice].getStatRequired().getStatName() != "") {
-                if (this->currentNode->getChoiceList()[choice].getStatRequired().getStatValue() <= choice) {
+                string statReq = this->currentNode->getChoiceList()[choice].getStatRequired().getStatName();
+                if (this->currentNode->getChoiceList()[choice].getStatRequired().getStatValue() <=
+                    this->getPlayer()->findStat(statReq)->getStatValue()) {
                     validStat = true;
                 } else {
                     cout << "Une de vos emotions n'est pas assez developpee." << endl << endl;
@@ -117,9 +119,9 @@ bool GameManager::gameLoop() {
             if (validItem && validStat) {
                 string destination = this->currentNode->getChoiceList()[choice].getChoiceDestination();
 
-                if (destination.compare("mort") == 0) {
-                    cout << " -- YOU DIE -- " << endl;
-                    cout << "Continuer ? 1:Oui 2:Non" << endl;
+                if (destination.compare("fail") == 0) {
+                    cout << " -- YOU LOOSE -- " << endl;
+                    cout << "Recommencer ? 1:Oui 2:Non" << endl;
                     choice = checkUserInput(1, 3);
                     if (choice == 1) return true;
                     else return false;
@@ -224,7 +226,7 @@ void GameManager::rewardEffect(string reward) {
                     value = stoi(sm1.str());
                     this->getPlayer()->findStat(statName)->setStatValue(
                             this->getPlayer()->findStat(statName)->getStatValue() + value);
-                    cout << endl << endl << endl << " [!] Update Systeme : Wagner -> Augmentation du module : "
+                    cout << endl << endl << endl << " [!] Mise a jour Systeme : Wagner -> Augmentation du module : "
                          << statName << ". Progression : " << value << endl << endl;
                     return;
                 }
@@ -233,8 +235,12 @@ void GameManager::rewardEffect(string reward) {
         }
     }
 
-    this->getPlayer()->addItemToBag(reward);
-    cout << endl << endl << "[!] Update Systeme : Wagner -> " << reward << endl << endl;
+    if (!this->getPlayer()->isInBag(reward)) {
+        this->getPlayer()->addItemToBag(reward);
+        cout << endl << endl << "[!] Mise a jour Systeme : Wagner -> " << reward << endl << endl;
+    } else
+        cout << endl << endl << "Vous avez deja cet objet." << endl << endl;
+
 
 }
 
