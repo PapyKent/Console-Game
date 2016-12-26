@@ -31,8 +31,7 @@
 
         <node>
             <nodeName>Intro2.1</nodeName>
-            <nodeText>? : "Tu m'en vois ravi! Je suis le docteur Turin, ton createur et initiateur de ce projet."
-            </nodeText>
+            <nodeText>? : "Tu m'en vois ravi! Je suis le docteur Turin, ton createur et initiateur de ce projet."</nodeText>
             <choice>
                 <choiceText>"Quel projet?"</choiceText>
                 <destination>Explications Projet</destination>
@@ -46,9 +45,7 @@
 
         <node>
             <nodeName>Intro3</nodeName>
-            <nodeText>Turin : "Tu es mon invention, l'IA Wagner, placee dans un corp artificiel dans le cadre de
-                l'experience E242."
-            </nodeText>
+            <nodeText>Turin : "Tu es mon invention, l'IA Wagner, placee dans un corp artificiel dans le cadre de l'experience E242."</nodeText>
             <choice>
                 <choiceText>"Je... je ne comprends pas..."</choiceText>
                 <destination>IntroBut</destination>
@@ -61,10 +58,7 @@
 
         <node>
             <nodeName>Explications Projet</nodeName>
-            <nodeText>Turin : "Ce projet te concerne directement! Tu es une experience scientifique visant a tester une
-                nouvelle Intelligence Artificielle, basee sur le systeme de Generation Avancee de Mouvements, Emotions
-                et Reactions. Systeme que j'ai invente."
-            </nodeText>
+            <nodeText>Turin : "Ce projet te concerne directement! Tu es une experience scientifique visant a tester une nouvelle Intelligence Artificielle, basee sur le systeme de Generation Avancee de Mouvements, Emotions et Reactions. Systeme que j'ai invente."</nodeText>
             <choice>
                 <choiceText>...</choiceText>
                 <destination>IntroBut</destination>
@@ -72,10 +66,7 @@
         </node>
         <node>
             <nodeName>IntroBut</nodeName>
-            <nodeText>Turin : "Voici ce que je te demande Wagner, tu es actuellement dans un appartement non loin de mon
-                lieu de travail, l'entreprise FIIDA. Je vais te demander de venir me rejoindre, et d'agir de sorte a ce
-                que ta ..., disons condition, ne soit pas decouverte."
-            </nodeText>
+            <nodeText>Turin : "Voici ce que je te demande Wagner, tu es actuellement dans un appartement non loin de mon lieu de travail, l'entreprise FIIDA. Je vais te demander de venir me rejoindre, et d'agir de sorte a ce que ta ..., disons condition, ne soit pas decouverte."</nodeText>
             <choice>
                 <choiceText>Je...</choiceText>
                 <destination>IntroFin</destination>
@@ -84,10 +75,7 @@
 
         <node>
             <nodeName>IntroFin</nodeName>
-            <nodeText>Turin : "Tres bien! Ah oui au fait! Tu es equipe de modules d'emotions, qui vont se developper
-                selon tes actions. N'hesite pas a les controler a tout instant a l'aide de la commande "!stat". Je reste
-                en contact permanent avec toi. Bon courage !"
-            </nodeText>
+            <nodeText>Turin : "Tres bien! Ah oui au fait! Tu es equipe de modules d'emotions, qui vont se developper selon tes actions. N'hesite pas a les controler a tout instant a l'aide de la commande "!stat". Je reste en contact permanent avec toi. Bon courage !"</nodeText>
             <choice>
                 <choiceText>"Tres bien."</choiceText>
                 <destination>Commencement</destination>
@@ -99,10 +87,7 @@
         <chapterName>Chapitre 2 : Premier pas</chapterName>
         <node>
             <nodeName>Commencement</nodeName>
-            <nodeText>La petite piece ou vous etes a pour seules fournitures un lit et un bureau, sur lequel est posee
-                une malette. La porte d'entree est situee au bout d'un petit couloir. Vous apercevez un livre qui
-                depasse de sous le lit.
-            </nodeText>
+            <nodeText>La petite piece ou vous etes a pour seules fournitures un lit et un bureau, sur lequel est posee une malette. La porte d'entree est situee au bout d'un petit couloir. Vous apercevez un livre qui depasse de sous le lit.</nodeText>
             <choice>
                 <choiceText>Ouvrir la malette</choiceText>
                 <destination>Malette</destination>
@@ -131,8 +116,7 @@
 
         <node>
             <nodeName>Livre</nodeName>
-            <nodeText>C'est un livre pour enfant. L'histoire raconte la vie d'un chien abandonnee par ses maitres.
-            </nodeText>
+            <nodeText>C'est un livre pour enfant. L'histoire raconte la vie d'un chien abandonnee par ses maitres.</nodeText>
             <choice>
                 <choiceText>Jeter le livre.</choiceText>
                 <destination>Commencement</destination>
@@ -148,10 +132,7 @@
 
         <node>
             <nodeName>Sortie</nodeName>
-            <nodeText>Vous vous dirigez vers la porte. Elle ne semble pas verouillee. Vous descendez des escaliers et
-                vous retrouvez dans la rue. Vous apercevez au loin une grande tour de verre, sur laquelle figure le logo
-                FIIDA.
-            </nodeText>
+            <nodeText>Vous vous dirigez vers la porte. Elle ne semble pas verouillee. Vous descendez des escaliers et vous retrouvez dans la rue. Vous apercevez au loin une grande tour de verre, sur laquelle figure le logo FIIDA.</nodeText>
             <choice>
                 <choiceText>Retourner dans l'appartement.</choiceText>
                 <destination>Commencement</destination>
@@ -164,10 +145,8 @@
 
         <node>
             <nodeName>Rue</nodeName>
-            <nodeText>Les passants n'ont pas l'air de faire tres attention a vous. Un garde controle les gens a l'entree
-                de la tour. Vous arrivez a son niveau.
-                Garde : "Bonjour, vous travaillez ici ?"
-            </nodeText>
+            <nodeText>Les passants n'ont pas l'air de faire tres attention a vous. Un garde controle les gens a l'entree de la tour. Vous arrivez a son niveau.
+ Garde : "Bonjour, vous travaillez ici ?"</nodeText>
             <choice>
                 <choiceText>"Oui."</choiceText>
                 <destination>Controle</destination>
@@ -205,9 +184,7 @@
             <nodeName>Degage</nodeName>
             <nodeText>Garde : "Et bien allez le chercher!""</nodeText>
             <choice>
-                <choiceText>"S'il vous plait je suis presse! Je ne peux pas me permettre d'arriver en retard. Je vais me
-                    faire renvoyer !"
-                </choiceText>
+                <choiceText>"S'il vous plait je suis presse! Je ne peux pas me permettre d'arriver en retard. Je vais me faire renvoyer !"</choiceText>
                 <destination>toAccueil</destination>
                 <condition>
                     <stat>
@@ -229,9 +206,7 @@
 
         <node>
             <nodeName>Arrestation</nodeName>
-            <nodeText>Le garde s'enerve et vous arrete. La police arrive et vous controle. Ils se rendent compte que
-                vous n'etes pas humain.
-            </nodeText>
+            <nodeText>Le garde s'enerve et vous arrete. La police arrive et vous controle. Ils se rendent compte que vous n'etes pas humain.</nodeText>
             <choice>
                 <choiceText>...</choiceText>
                 <destination>fail</destination>
