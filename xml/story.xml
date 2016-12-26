@@ -1,73 +1,150 @@
 <story>
-   <chapter>
-       <chapterName>Chapitre 1 : Introduction</chapterName>
-      <node>
-         <nodeName>Intro1</nodeName>
-         <nodeText>Tu incarnes une IA qui a ete place dans un corp artificiel. Tu es une experience scientifique visant
-             a tester une nouvelle puce, basee sur le systeme de Generation Avancee de Mouvements, Emotions et
-             Reactions.
-         </nodeText>
-         <choice>
-            <choiceText>Continuer</choiceText>
-             <destination>Intro2</destination>
-             <reward>Joie+2</reward>
-         </choice>
+    <chapter>
+        <chapterName>Chapitre 1 : Introduction</chapterName>
+        <node>
+            <nodeName>Intro1</nodeName>
+            <nodeText>? : Bonjour Wagner ! Comment vas-tu ?
+            </nodeText>
+            <choice>
+                <choiceText>Je vais bien.</choiceText>
+                <destination>Intro2.1</destination>
+                <reward>Joie+1</reward>
+            </choice>
+            <choice>
+                <choiceText>Qui etes-vous?</choiceText>
+                <destination>Intro2</destination>
+            </choice>
 
-      </node>
-      <node>
-         <nodeName>Intro2</nodeName>
-         <nodeText>Je suis ton createur.</nodeText>
-         <choice>
-            <choiceText>Continuer</choiceText>
-            <destination>Premiers pas</destination>
-         </choice>
-      </node>
-      <node>
-         <nodeName>Premiers pas</nodeName>
-         <nodeText>Un rocher vous bloque le chemin.2</nodeText>
-         <choice>
-            <choiceText>Pousser le rocher2</choiceText>
-            <destination>22</destination>
-            <condition>
-               <stat>
-                  <statName>noStat</statName>
-                  <value>0</value>
-               </stat>
-               <itemRequired>levier</itemRequired>
-            </condition>
-             <reward>Joie+2</reward>
-         </choice>
+        </node>
+        <node>
+            <nodeName>Intro2</nodeName>
+            <nodeText>? : Je suis le docteur Turin, ton createur et initiateur de ce projet.</nodeText>
+            <choice>
+                <choiceText>Quel projet?</choiceText>
+                <destination>Explications Projet</destination>
+            </choice>
+            <choice>
+                <choiceText>Mon... Mon createur? Que voulez-vous dire?</choiceText>
+                <destination>Intro3</destination>
+                <reward>Surprise+1</reward>
+            </choice>
+        </node>
 
-          <choice>
-              <choiceText>Contourner le rocher</choiceText>
-              <destination>Apres le rocher</destination>
-              <condition>
-                  <stat>
-                      <statName>Joie</statName>
-                      <value>1</value>
-                  </stat>
-              </condition>
-          </choice>
-      </node>
-   </chapter>
+        <node>
+            <nodeName>Intro2.1</nodeName>
+            <nodeText>? : Tu m'en vois ravi! Je suis le docteur Turin, ton createur et initiateur de ce projet.
+            </nodeText>
+            <choice>
+                <choiceText>Quel projet?</choiceText>
+                <destination>Explications Projet</destination>
+            </choice>
+            <choice>
+                <choiceText>Mon... Mon createur? Que voulez-vous dire?</choiceText>
+                <destination>Intro3</destination>
+                <reward>Surprise+1</reward>
+            </choice>
+        </node>
 
-   <chapter>
-      <chapterName>Chapitre 2 : Faux depart</chapterName>
-      <node>
-         <nodeName>Apres le rocher</nodeName>
-         <nodeText>Un autre rocher vous bloque le chemin.</nodeText>
-         <choice>
-            <choiceText>Pousser le rocher</choiceText>
-             <destination>mort</destination>
-            <condition>
-               <stat>
-                  <statName>noStat</statName>
-                  <value>0</value>
-               </stat>
-               <itemRequired>mains</itemRequired>
-            </condition>
-         </choice>
-      </node>
-   </chapter>
+        <node>
+            <nodeName>Intro3</nodeName>
+            <nodeText>Turin : Tu es mon invention, l'IA Wagner, placee dans un corp artificiel dans le cadre de
+                l'experience
+                E242.
+            </nodeText>
+            <choice>
+                <choiceText>Je... je ne comprends pas...</choiceText>
+                <destination>IntroBut</destination>
+            </choice>
+            <choice>
+                <choiceText>L'experience E242? En quoi consiste-t-elle?</choiceText>
+                <destination>Explications Projet</destination>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>Explications Projet</nodeName>
+            <nodeText>Turin : Ce projet te concerne directement! Tu es une experience scientifique visant a tester une
+                nouvelle
+                Intelligence Artificielle, basee sur le systeme de Generation Avancee de Mouvements, Emotions et
+                Reactions. Systeme que j'ai invente.
+            </nodeText>
+            <choice>
+                <choiceText>...</choiceText>
+                <destination>IntroBut</destination>
+            </choice>
+        </node>
+        <node>
+            <nodeName>IntroBut</nodeName>
+            <nodeText>Turin : Voici ce que je te demande Wagner, tu es actuellement dans un appartement non loin de mon
+                lieu de travail,
+                l'entreprise FIIDA. Je vais te demander de venir me rejoindre, et d'agir de sorte a ce que ta ...,
+                disons condition, ne soit pas decouverte.
+            </nodeText>
+            <choice>
+                <choiceText>Tres bien.</choiceText>
+                <destination>IntroFin</destination>
+            </choice>
+        </node>
+
+        <node>
+            <nodeName>IntroFin</nodeName>
+            <nodeText>Turin : Tres bien. Ah oui au fait! Tu es equipe de modules d'emotions, qui vont se developper
+                selon tes actions. N'hesite pas a les controler a tout instant a l'aide de la commande "!stat". Je reste
+                en contatc permanent avec toi. Bon courage !
+            </nodeText>
+            <choice>
+                <choiceText>Tres bien.</choiceText>
+                <destination>IntroFin</destination>
+            </choice>
+        </node>
+
+
+        <node>
+            <nodeName>Premiers pas</nodeName>
+            <nodeText>Un rocher vous bloque le chemin.2</nodeText>
+            <choice>
+                <choiceText>Pousser le rocher2</choiceText>
+                <destination>22</destination>
+                <condition>
+                    <stat>
+                        <statName>noStat</statName>
+                        <value>0</value>
+                    </stat>
+                    <itemRequired>levier</itemRequired>
+                </condition>
+                <reward>Joie+2</reward>
+            </choice>
+
+            <choice>
+                <choiceText>Contourner le rocher</choiceText>
+                <destination>Apres le rocher</destination>
+                <condition>
+                    <stat>
+                        <statName>Joie</statName>
+                        <value>1</value>
+                    </stat>
+                </condition>
+            </choice>
+        </node>
+    </chapter>
+
+    <chapter>
+        <chapterName>Chapitre 2 : Faux depart</chapterName>
+        <node>
+            <nodeName>Apres le rocher</nodeName>
+            <nodeText>Un autre rocher vous bloque le chemin.</nodeText>
+            <choice>
+                <choiceText>Pousser le rocher</choiceText>
+                <destination>mort</destination>
+                <condition>
+                    <stat>
+                        <statName>noStat</statName>
+                        <value>0</value>
+                    </stat>
+                    <itemRequired>mains</itemRequired>
+                </condition>
+            </choice>
+        </node>
+    </chapter>
 </story>
 

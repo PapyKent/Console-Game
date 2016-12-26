@@ -46,8 +46,8 @@ Node *GameManager::getCurrentNode() {
 void GameManager::printNode() {
     Node *node = this->getCurrentNode();
     if (node != NULL) {
-        cout << "node name : " << node->getNodeName() << endl << endl;
-        cout << "node text : " << node->getNodeText() << endl << endl << endl;
+
+        cout << endl << endl << node->getNodeText() << endl << endl << endl;
 
         cout << "Quelle sera votre prochaine action ? " << endl << endl;
 
@@ -95,54 +95,57 @@ bool GameManager::gameLoop() {
         printNode();
         int choice = checkUserInput(0, getCurrentNode()->getChoiceList().size());
         bool validStat = false, validItem = false;
+        if (choice != -1) {
+            if (this->currentNode->getChoiceList()[choice].getStatRequired().getStatName() != "") {
+                if (this->currentNode->getChoiceList()[choice].getStatRequired().getStatValue() <= choice) {
+                    validStat = true;
+                } else {
+                    cout << "Une de vos emotions n'est pas assez developpee." << endl << endl;
+                }
+            } else validStat = true;
 
-        if (this->currentNode->getChoiceList()[choice].getStatRequired().getStatName() != "") {
-            if (this->currentNode->getChoiceList()[choice].getStatRequired().getStatValue() <= choice) {
-                validStat = true;
-            } else {
-                cout << "Une de vos emotions n'est pas assez developpee." << endl << endl;
+
+            if (this->currentNode->getChoiceList()[choice].getItemRequired() != "") {
+                if (this->getPlayer()->isInBag(this->currentNode->getChoiceList()[choice].getItemRequired())) {
+                    validItem = true;
+                } else {
+                    cout << endl << endl << "Il vous manque un certain objet." << endl << endl;
+                }
+            } else validItem = true;
+
+
+            if (validItem && validStat) {
+                string destination = this->currentNode->getChoiceList()[choice].getChoiceDestination();
+
+                if (destination.compare("mort") == 0) {
+                    cout << " -- YOU DIE -- " << endl;
+                    cout << "Continuer ? 1:Oui 2:Non" << endl;
+                    choice = checkUserInput(1, 3);
+                    if (choice == 1) return true;
+                    else return false;
+                }
+
+                if (destination.compare("fin") == 0) {
+                    cout << " -- THE END -- " << endl << endl;
+                    cout << "Recommencer ? 1:Oui 2:Non" << endl;
+                    choice = checkUserInput(1, 3);
+                    if (choice == 1) return true;
+                    else return false;
+                }
+                //on regarde si la destination entraine un changement de chapitre
+                if (this->currentChapter->findNode(destination) == NULL) {
+                    setChapter(destination);
+                    this->currentNode = this->currentChapter->findNode(destination);
+                } else {
+                    string reward = this->currentNode->getChoiceList()[choice].getReward();
+                    if (reward != "")
+                        rewardEffect(reward);
+                    this->currentNode = this->currentChapter->findNode(destination);
+
+                }
             }
-        } else validStat = true;
-
-
-        if (this->currentNode->getChoiceList()[choice].getItemRequired() != "") {
-            if (this->getPlayer()->isInBag(this->currentNode->getChoiceList()[choice].getItemRequired())) {
-                validItem = true;
-            } else {
-                cout << endl << endl << "Il vous manque un certain objet." << endl << endl;
-            }
-        } else validItem = true;
-
-
-        if (validItem && validStat) {
-            string destination = this->currentNode->getChoiceList()[choice].getChoiceDestination();
-
-            if (destination.compare("mort") == 0) {
-                cout << " -- YOU DIE -- " << endl;
-                cout << "Continuer ? 1:Oui 2:Non" << endl;
-                choice = checkUserInput(1, 3);
-                if (choice == 1) return true;
-                else return false;
-            }
-
-            if (destination.compare("fin") == 0) {
-                cout << " -- THE END -- " << endl << endl;
-                cout << "Recommencer ? 1:Oui 2:Non" << endl;
-                choice = checkUserInput(1, 3);
-                if (choice == 1) return true;
-                else return false;
-            }
-            //on regarde si la destination entraine un changement de chapitre
-            if (this->currentChapter->findNode(destination) == NULL) {
-                setChapter(destination);
-                this->currentNode = this->currentChapter->findNode(destination);
-            } else {
-                string reward = this->currentNode->getChoiceList()[choice].getReward();
-                if (reward != "")
-                    rewardEffect(reward);
-                this->currentNode = this->currentChapter->findNode(destination);
-
-            }
+        } else {
+            printPlayerStats();
         }
 
         cout << "------------------------------" << endl << endl;
@@ -159,12 +162,15 @@ int GameManager::checkUserInput(int lowerValue, int upperValue) {
     while (!validInput) {
         cout << "Quelle est votre decision ?" << endl;
         cin >> input;
-        if (Check::isInt(input)) {
+        if (input.compare("!stat") == 0)
+            return -1;
+        else if (Check::isInt(input)) {
             choice = stoi(input);
             if (choice >= lowerValue && choice < upperValue) {
                 validInput = true;
             }
         }
+
     }
     return choice;
 }
@@ -218,6 +224,8 @@ void GameManager::rewardEffect(string reward) {
                     value = stoi(sm1.str());
                     this->getPlayer()->findStat(statName)->setStatValue(
                             this->getPlayer()->findStat(statName)->getStatValue() + value);
+                    cout << endl << endl << endl << " [!] Update Systeme : Wagner -> Augmentation du module : "
+                         << statName << ". Progression : " << value << endl << endl;
                     return;
                 }
             }
@@ -226,7 +234,15 @@ void GameManager::rewardEffect(string reward) {
     }
 
     this->getPlayer()->addItemToBag(reward);
+    cout << endl << endl << "[!] Update Systeme : Wagner -> " << reward << endl << endl;
 
+}
+
+void GameManager::printPlayerStats() {
+    for (map<string, Statistic>::iterator it = this->getPlayer()->getStatsList()->begin();
+         it != this->getPlayer()->getStatsList()->end(); ++it) {
+        cout << endl << it->second.getStatName() << " : " << it->second.getStatValue() << endl;
+    }
 
 }
 

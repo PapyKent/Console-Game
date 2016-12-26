@@ -1,5 +1,9 @@
 <character>
 	<stat>Joie</stat>
-	<stat>Intelligence</stat>
-	<stat>Agilite</stat>
+	<stat>Tristesse</stat>
+	<stat>Colere</stat>
+	<stat>Degout</stat>
+	<stat>Peur</stat>
+	<stat>Surprise</stat>
+	<stat>Mepris</stat>
 </character>

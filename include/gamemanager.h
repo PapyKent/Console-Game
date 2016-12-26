@@ -44,6 +44,8 @@ public:
     void resetPlayer();
 
     void rewardEffect(string reward);
+
+    void printPlayerStats();
 };
 
 #endif // GAMEMANAGER_H
