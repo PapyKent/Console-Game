@@ -52,10 +52,10 @@ bool Check::isTypeCorrect(const tinyxml2::XMLElement *pointer) {
 
 bool Check::isInt(string s) {
     try {
-        int test = stoi(s);
+        int test = std::stoi(s);
     }
     catch (exception e) {
-        cout << "Ce n'est pas un nombre." << endl;
+        std::cout << "Ce n'est pas un nombre." << std::endl;
         return false;
     }
     return true;
