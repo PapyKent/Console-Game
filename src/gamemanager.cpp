@@ -252,5 +252,12 @@ void GameManager::printPlayerStats() {
 
 }
 
+GameManager::~GameManager() {
+    delete[] player;
+    delete[] currentChapter;
+    delete[] currentNode;
+
+}
+
 
 

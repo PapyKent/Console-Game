@@ -16,7 +16,7 @@ private:
 public:
 
     GameManager();
-
+    ~GameManager();
     void addChapter(Chapter);
     Chapter* findChapter(string);
 
@@ -46,6 +46,8 @@ public:
     void rewardEffect(string reward);
 
     void printPlayerStats();
+
+
 };
 
 #endif // GAMEMANAGER_H
