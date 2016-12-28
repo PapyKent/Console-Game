@@ -1,7 +1,7 @@
 #include "../include/player.h"
 
 Player::Player() {
-
+    this->playerName = "Wagner";
 }
 
 Player::Player(string name) {

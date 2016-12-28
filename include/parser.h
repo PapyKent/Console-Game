@@ -22,9 +22,9 @@ class Parser
 private:
 
 public:
-    static void loadCharacter(GameManager& gm, const char *path);
+    static bool loadCharacter(GameManager& gm, const char *path);
 
-    static void loadStory(GameManager& gm, const char *path);
+    static bool loadStory(GameManager& gm, const char *path);
 };
 
 #endif // PARSER_H

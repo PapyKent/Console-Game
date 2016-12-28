@@ -1,7 +1,7 @@
 #include "../include/parser.h"
 
 
-void Parser::loadStory(GameManager& gm, const char *path) {
+bool Parser::loadStory(GameManager& gm, const char *path) {
     XMLDocument doc;
     doc.LoadFile(path);
 
@@ -10,12 +10,12 @@ void Parser::loadStory(GameManager& gm, const char *path) {
         docRoot = doc.FirstChild();
     }
 
-    if (docRoot == NULL) cout << "error loading file" << endl;//error loading file
+    if (docRoot == NULL) return false;
     else {
         XMLElement *docChapter;
         if (!Check::isElementNull(docRoot, "chapter")) {
             docChapter = docRoot->FirstChildElement("chapter");
-        }
+        }else return false;
 
         //parcours des chapitres
         while (docChapter != NULL) {
@@ -24,23 +24,26 @@ void Parser::loadStory(GameManager& gm, const char *path) {
             if (!Check::isElementNull(docChapter, "chapterName")) {
                 chapter.setChapterName(docChapter->FirstChildElement("chapterName")->GetText());
             }
+            else return false;
 
             // parcours des nodes
             XMLElement *docNode = NULL;
             if (!Check::isElementNull(docChapter, "node")) {
                 docNode = docChapter->FirstChildElement("node");
-            }
+            } else return false;
+
             while (docNode != NULL) {
                 Node node;
 
 
                 if (!Check::isElementNull(docNode, "nodeName")) {
                     node.setNodeName(docNode->FirstChildElement("nodeName")->GetText());
-                }
+                } else return false;
+
 
                 if (!Check::isElementNull(docNode, "nodeText")) {
                     node.setNodeText(docNode->FirstChildElement("nodeText")->GetText());
-                }
+                } else return false;
 
 
                 //parcours des choix
@@ -49,17 +52,17 @@ void Parser::loadStory(GameManager& gm, const char *path) {
 
                 if (!Check::isElementNull(docNode, "choice")) {
                     docChoice = docNode->FirstChildElement("choice");
-                }
+                }else return false;
 
                 while (docChoice != NULL) {
                     Choice choice;
 
                     if (!Check::isElementNull(docChoice, "choiceText")) {
                         choice.setChoiceText(docChoice->FirstChildElement("choiceText")->GetText());
-                    }
+                    } else return false;
                     if (!Check::isElementNull(docChoice, "destination")) {
                         choice.setChoiceDestination(docChoice->FirstChildElement("destination")->GetText());
-                    }
+                    } else return false;
 
                     //check si condition
                     XMLElement *docCondition = docChoice->FirstChildElement("condition");
@@ -70,14 +73,14 @@ void Parser::loadStory(GameManager& gm, const char *path) {
                             Statistic stat;
                             if (!Check::isElementNull(docConditionItems, "statName")) {
                                 stat.setStatName(docConditionItems->FirstChildElement("statName")->GetText());
-                            }
+                            }else return false;
 
 
                             if (Check::isTypeCorrect(docConditionItems->FirstChildElement("value"))) {
                                 int statVal = stoi(docConditionItems->FirstChildElement("value")->GetText());
                                 //check if number
                                 stat.setStatValue(statVal);
-                            }
+                            }else return false;
 
                             choice.setStatRequired(stat);
                         }
@@ -106,12 +109,11 @@ void Parser::loadStory(GameManager& gm, const char *path) {
             gm.addChapter(chapter);
             docChapter = docChapter->NextSiblingElement("chapter");
         }
-        //return XML_SUCCESS;
     }
-    int tr= 0;
+    return true;
 }
 
-void Parser::loadCharacter(GameManager& gm, const char *path) {
+bool Parser::loadCharacter(GameManager& gm, const char *path) {
     XMLDocument doc;
     doc.LoadFile(path);
 
@@ -121,12 +123,12 @@ void Parser::loadCharacter(GameManager& gm, const char *path) {
         docRoot = doc.FirstChild();
     }
 
-    if (docRoot == NULL) cout << "error loading file" << endl;//error loading file
+    if (docRoot == NULL) return false;
     else {
         XMLElement *docStats;
         if (!Check::isElementNull(docRoot, "stat")) {
             docStats = docRoot->FirstChildElement("stat");
-        }
+        }else return false;
 
         //parcours des stats
         while (docStats != NULL) {
@@ -138,8 +140,9 @@ void Parser::loadCharacter(GameManager& gm, const char *path) {
         }
         gm.getPlayer()->setPlayerName("Carl");
 
-        //return XML_SUCCESS;
+
     }
+    return true;
 }
 
 

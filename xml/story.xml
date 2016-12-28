@@ -160,7 +160,6 @@
         <node>
             <nodeName>Controle</nodeName>
             <nodeText>Garde : "Puis-je voir votre badge ?"</nodeText>
-
             <choice>
                 <choiceText>Montrer le badge.</choiceText>
                 <destination>toAccueil</destination>
