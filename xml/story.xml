@@ -164,10 +164,6 @@
                 <choiceText>Montrer le badge.</choiceText>
                 <destination>toAccueil</destination>
                 <condition>
-                    <stat>
-                        <statName>noStat</statName>
-                        <value>0</value>
-                    </stat>
                     <itemRequired>Badge</itemRequired>
                 </condition>
             </choice>
